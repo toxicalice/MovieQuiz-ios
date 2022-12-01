@@ -16,17 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Dcl-FU-JMO">
-                                <rect key="frame" x="-189" y="0.0" width="789" height="906"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Dcl-FU-JMO">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Dcl-FU-JMO" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" constant="186" id="Rgj-oB-9og"/>
-                            <constraint firstItem="Dcl-FU-JMO" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" constant="10" id="Uo2-hS-6am"/>
+                            <constraint firstItem="Dcl-FU-JMO" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="Rgj-oB-9og"/>
+                            <constraint firstItem="Dcl-FU-JMO" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="Uo2-hS-6am"/>
                             <constraint firstAttribute="top" secondItem="Dcl-FU-JMO" secondAttribute="top" id="fq6-Ef-Wjx"/>
-                            <constraint firstAttribute="leading" secondItem="Dcl-FU-JMO" secondAttribute="leading" constant="189" id="q47-Bl-vfw"/>
+                            <constraint firstAttribute="leading" secondItem="Dcl-FU-JMO" secondAttribute="leading" id="q47-Bl-vfw"/>
                         </constraints>
                     </view>
                 </viewController>
