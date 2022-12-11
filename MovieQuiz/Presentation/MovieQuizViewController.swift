@@ -32,7 +32,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     
     // MARK: - QuestionFactoryDelegate
 
-    func didRecieveNextQuestion(question: QuizQuestion?) {
+    func didReceiveNextQuestion(question: QuizQuestion?) {
         guard let question = question else {
             return
         }
@@ -117,7 +117,12 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         if currentQuestionIndex == questionsAmount - 1 {
             statisticsService.store(correct: correctAnswers, total: questionsAmount)
 
-            let text = "Ваш результат: \(correctAnswers)/\(questionsAmount)\nКоличество сыгранных квизов: \(String(describing: statisticsService.gamesCount))\nРекорд: \(String(describing: statisticsService.bestGame.correct))/\(String(describing: statisticsService.bestGame.total)) (\(String(describing: statisticsService.bestGame.date.dateTimeString)))\nСредняя точность: \(String(format: "%.2f", statisticsService.totalAccuracy))%"
+            let text = """
+                Ваш результат: \(correctAnswers)/\(questionsAmount)
+                Количество сыгранных квизов: \(String(describing: statisticsService.gamesCount))
+                Рекорд:\(String(describing:statisticsService.bestGame.correct))/\(String(describing:statisticsService.bestGame.total))(\(String(describing: statisticsService.bestGame.date.dateTimeString)))
+                Средняя точность: \(String(format: "%.2f", statisticsService.totalAccuracy))%
+                """
             
             show(quiz: QuizResultsViewModel(title: "Этот раунд окончен!", text: text, buttonText: "Сыграть ещё раз"))
         } else {

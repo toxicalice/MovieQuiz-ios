@@ -73,18 +73,12 @@ final class StatisticServiceImplementation: StatisticService {
         totalCorrect += count
         totalAnswers += amount
 
-        let currentGame = GameRecord(
-            correct: count,
-            total: amount,
-            date: Date())
-
-        guard let data = try? JSONEncoder().encode(currentGame) else {
-            print("Невозможно собрать модель из currentGame")
-            return
-        }
-
-        if currentGame.correct >= bestGame.correct {
-            userDefaults.set(data, forKey: Keys.bestGame.rawValue)
+        if amount >= bestGame.correct {
+            bestGame = GameRecord(
+                correct: count,
+                total: amount,
+                date: Date()
+            )
         }
     }
 }
