@@ -10,6 +10,16 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var loaderView: UIActivityIndicatorView!
     
+    @IBAction private func NoButtonDidTap(_ sender: Any) {
+        let isCorrect = checkAnswer(answer: false)
+        showAnswerResult(isCorrect: isCorrect)
+    }
+    
+    @IBAction private func YesButtonDidTap(_ sender: Any) {
+        let isCorrect = checkAnswer(answer: true)
+        showAnswerResult(isCorrect: isCorrect)
+    }
+    
     private var correctAnswers: Int = 0
     private let questionsAmount: Int = 10
     private var questionFactory: QuestionFactory = QuestionFactory(moviesLoader: MoviesLoader())
@@ -33,21 +43,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         loadData()
     }
     
-    private func loadData(){
-        questionFactory.loadData()
-        showLoadingIndicator()
-    }
-    
-    private func showLoadingIndicator(){
-        loaderView.isHidden = false
-        contentStack.isHidden = true
-    }
-    
-    private func hideLoadingIndicator(){
-        loaderView.isHidden = true
-        contentStack.isHidden = false
-    }
-    
     // MARK: - QuestionFactoryDelegate
 
     func didReceiveNextQuestion(question: QuizQuestion?) {
@@ -60,6 +55,16 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         show(quiz: viewModel)
     }
     
+    func didFailToLoadData(with error: Error) {
+        showNetworkError(message: error.localizedDescription)
+    }
+    
+    func didLoadDataFromServer() {
+        loaderView.isHidden = true
+        questionFactory.requestNextQuestion()
+    }
+    
+    // MARK: - Private functions
     private func checkAnswer(answer: Bool) -> Bool {
         if currentQuestion?.correctAnswer == answer {
             correctAnswers += 1
@@ -68,18 +73,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         return currentQuestion?.correctAnswer == answer
     }
     
-    @IBAction private func NoButtonDidTap(_ sender: Any) {
-        let isCorrect = checkAnswer(answer: false)
-        showAnswerResult(isCorrect: isCorrect)
-    }
-    
-    @IBAction private func YesButtonDidTap(_ sender: Any) {
-        let isCorrect = checkAnswer(answer: true)
-        showAnswerResult(isCorrect: isCorrect)
-    }
-    
     private func showAnswerResult(isCorrect: Bool) {
-        
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.cornerRadius = 20
@@ -105,7 +99,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     }
     
     private func show(quiz step: QuizStepViewModel) {
-        // здесь мы заполняем нашу картинку, текст и счётчик данными
         imageView.image = step.image
         counterLabel.text = step.questionNumber
         textLabel.text = step.question
@@ -113,7 +106,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     }
     
     private func show(quiz result: QuizResultsViewModel) {
-        // здесь мы показываем результат прохождения квиза
         let alert = AlertModel(title: result.title, message: result.text, buttonText: result.buttonText, completion: { [weak self] _ in
             guard let self = self else { return }
             
@@ -149,10 +141,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         }
     }
     
-    func didFailToLoadData(with error: Error) {
-        showNetworkError(message: error.localizedDescription)
-    }
-    
     private func showNetworkError(message: String){
         let model = AlertModel(
             title: "Что-то пошло не так",
@@ -165,8 +153,18 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         alertPresenter.makeAlertController(alertModel: model)
     }
     
-    func didLoadDataFromServer() {
+    private func loadData(){
+        questionFactory.loadData()
+        showLoadingIndicator()
+    }
+    
+    private func showLoadingIndicator(){
+        loaderView.isHidden = false
+        contentStack.isHidden = true
+    }
+    
+    private func hideLoadingIndicator(){
         loaderView.isHidden = true
-        questionFactory.requestNextQuestion()
+        contentStack.isHidden = false
     }
 }
