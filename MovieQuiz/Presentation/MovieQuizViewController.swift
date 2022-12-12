@@ -51,17 +51,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     // MARK: - QuestionFactoryDelegate
 
     func didReceiveNextQuestion(question: QuizQuestion?) {
-        hideLoadingIndicator()
-        
         guard let question = question else {
             return
         }
         
         currentQuestion = question
         let viewModel = convert(model: question)
-        DispatchQueue.main.async { [weak self] in
-            self?.show(quiz: viewModel)
-        }
+        show(quiz: viewModel)
     }
     
     private func checkAnswer(answer: Bool) -> Bool {
@@ -113,6 +109,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         imageView.image = step.image
         counterLabel.text = step.questionNumber
         textLabel.text = step.question
+        hideLoadingIndicator()
     }
     
     private func show(quiz result: QuizResultsViewModel) {
