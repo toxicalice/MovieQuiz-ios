@@ -23,10 +23,14 @@ class QuestionFactory: QuestionFactoryProtocol {
                 guard let self = self else { return }
                 switch result {
                 case .success(let mostPopularMovies):
-                    self.movies = mostPopularMovies.items
-                    self.delegate?.didLoadDataFromServer()
+                    if mostPopularMovies.errorMessage.isEmpty {
+                        self.movies = mostPopularMovies.items
+                        self.delegate?.didLoadDataFromServer()
+                    } else {
+                        self.delegate?.didFailToLoadData(with: mostPopularMovies.errorMessage)
+                    }
                 case .failure(let error):
-                    self.delegate?.didFailToLoadData(with: error)
+                    self.delegate?.didFailToLoadData(with: error.localizedDescription)
                 }
             }
         }
@@ -56,8 +60,7 @@ class QuestionFactory: QuestionFactoryProtocol {
                                          text: text,
                                          correctAnswer: correctAnswer)
             
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
+            DispatchQueue.main.async {
                 self.delegate?.didReceiveNextQuestion(question: question)
             }
         }

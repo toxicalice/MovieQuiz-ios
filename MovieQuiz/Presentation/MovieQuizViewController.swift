@@ -10,13 +10,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var loaderView: UIActivityIndicatorView!
     
-    @IBAction private func NoButtonDidTap(_ sender: Any) {
-        let isCorrect = checkAnswer(answer: false)
+    @IBAction private func noButtonDidTap(_ sender: Any) {
+        let isCorrect = currentQuestion?.correctAnswer == false
         showAnswerResult(isCorrect: isCorrect)
     }
     
-    @IBAction private func YesButtonDidTap(_ sender: Any) {
-        let isCorrect = checkAnswer(answer: true)
+    @IBAction private func yesButtonDidTap(_ sender: Any) {
+        let isCorrect = currentQuestion?.correctAnswer == true
         showAnswerResult(isCorrect: isCorrect)
     }
     
@@ -55,8 +55,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         show(quiz: viewModel)
     }
     
-    func didFailToLoadData(with error: Error) {
-        showNetworkError(message: error.localizedDescription)
+    func didFailToLoadData(with error: String) {
+        showNetworkError(message: error)
     }
     
     func didLoadDataFromServer() {
@@ -65,14 +65,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     }
     
     // MARK: - Private functions
-    private func checkAnswer(answer: Bool) -> Bool {
-        if currentQuestion?.correctAnswer == answer {
-            correctAnswers += 1
-        }
-        
-        return currentQuestion?.correctAnswer == answer
-    }
-    
+
     private func showAnswerResult(isCorrect: Bool) {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
@@ -80,6 +73,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         
         if isCorrect == true {
             imageView.layer.borderColor = UIColor.ypGreen.cgColor
+            correctAnswers += 1
         } else {
             imageView.layer.borderColor = UIColor.ypRed.cgColor
         }
