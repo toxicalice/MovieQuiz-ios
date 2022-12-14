@@ -152,10 +152,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="contentStack" destination="xY2-yJ-Isx" id="WIF-va-yHc"/>
                         <outlet property="counterLabel" destination="Y5N-2U-1X4" id="9fa-Xg-KlY"/>
                         <outlet property="imageView" destination="Ud3-ZD-aHB" id="u3t-g9-BT0"/>
-                        <outlet property="loaderView" destination="jC1-M1-Mw4" id="MV2-ha-WYc"/>
+                        <outlet property="loader" destination="jC1-M1-Mw4" id="18S-R2-uQO"/>
                         <outlet property="noButton" destination="wiH-1o-8oY" id="o6q-FS-JUs"/>
                         <outlet property="textLabel" destination="UaG-Nf-T9D" id="PAv-lm-MI8"/>
                         <outlet property="yesButton" destination="Ebg-wY-8Ab" id="g3I-MG-oQa"/>

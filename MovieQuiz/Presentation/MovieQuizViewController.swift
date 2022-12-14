@@ -1,10 +1,10 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController {
+final class MovieQuizViewController: UIViewController, MovieQuizViewControllerProtocol {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
-    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private var loader: UIActivityIndicatorView!
     @IBOutlet private var yesButton: UIButton!
     @IBOutlet private var noButton: UIButton!
 
@@ -65,12 +65,12 @@ final class MovieQuizViewController: UIViewController {
     }
 
     func showLoadingIndicator() {
-        activityIndicator.isHidden = false // говорим, что индикатор загрузки не скрыт
-        activityIndicator.startAnimating() // включаем анимацию
+        loader.isHidden = false
+        loader.startAnimating()
     }
 
     func hideLoadingIndicator() {
-        activityIndicator.isHidden = true
+        loader.isHidden = true
     }
 
     func showNetworkError(message: String) {
