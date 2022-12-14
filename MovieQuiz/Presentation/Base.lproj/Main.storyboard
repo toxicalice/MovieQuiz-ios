@@ -22,6 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="jC1-M1-Mw4" userLabel="Loader">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xY2-yJ-Isx" userLabel="ContentStack">
                                 <rect key="frame" x="20" y="58" width="374" height="804"/>
                                 <subviews>
@@ -103,7 +106,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="NoButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pXv-1S-7gZ"/>
+                                                    <action selector="noButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CaN-gh-FbP"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebg-wY-8Ab" userLabel="YesButton">
@@ -121,7 +124,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="YesButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AXi-sp-tFX"/>
+                                                    <action selector="yesButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4mG-F0-8cR"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -139,12 +142,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xY2-yJ-Isx" secondAttribute="bottom" id="BmT-2s-TXc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xY2-yJ-Isx" secondAttribute="trailing" constant="20" id="Jw8-FW-1nV"/>
                             <constraint firstItem="xY2-yJ-Isx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Uue-IQ-gGg"/>
+                            <constraint firstItem="jC1-M1-Mw4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WXg-HW-rBU"/>
+                            <constraint firstItem="jC1-M1-Mw4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dlv-MY-viL"/>
                             <constraint firstItem="xY2-yJ-Isx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zFS-av-6JT"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentStack" destination="xY2-yJ-Isx" id="WIF-va-yHc"/>
                         <outlet property="counterLabel" destination="Y5N-2U-1X4" id="9fa-Xg-KlY"/>
                         <outlet property="imageView" destination="Ud3-ZD-aHB" id="u3t-g9-BT0"/>
+                        <outlet property="loaderView" destination="jC1-M1-Mw4" id="MV2-ha-WYc"/>
                         <outlet property="noButton" destination="wiH-1o-8oY" id="o6q-FS-JUs"/>
                         <outlet property="textLabel" destination="UaG-Nf-T9D" id="PAv-lm-MI8"/>
                         <outlet property="yesButton" destination="Ebg-wY-8Ab" id="g3I-MG-oQa"/>
