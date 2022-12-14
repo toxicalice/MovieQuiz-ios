@@ -100,7 +100,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     }
     
     private func show(quiz result: QuizResultsViewModel) {
-        let alert = AlertModel(title: result.title, message: result.text, buttonText: result.buttonText, completion: { [weak self] _ in
+        let alert = AlertModel(id: "Game results", title: result.title, message: result.text, buttonText: result.buttonText, completion: { [weak self] _ in
             guard let self = self else { return }
             
             self.currentQuestionIndex = 0
@@ -137,6 +137,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     
     private func showNetworkError(message: String){
         let model = AlertModel(
+            id: "Error",
             title: "Что-то пошло не так",
             message: "Невозможно загрузить данные",
             buttonText: "Попробовать еще раз")
