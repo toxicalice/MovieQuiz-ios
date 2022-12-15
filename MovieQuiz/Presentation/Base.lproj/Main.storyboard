@@ -46,6 +46,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5N-2U-1X4" userLabel="IndexLabel">
                                                 <rect key="frame" x="338.5" y="0.0" width="35.5" height="24"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Index"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="1/10">
                                                         <attributes>
@@ -62,6 +63,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ud3-ZD-aHB" userLabel="PreviewImage">
                                         <rect key="frame" x="0.0" y="44" width="374" height="561"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Poster"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Ud3-ZD-aHB" secondAttribute="height" multiplier="2:3" id="lcC-Uf-qpY"/>
                                         </constraints>
@@ -94,6 +96,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wiH-1o-8oY" userLabel="NoButton">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="No"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -106,12 +109,13 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="noButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CaN-gh-FbP"/>
+                                                    <action selector="noButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xw1-x2-qca"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebg-wY-8Ab" userLabel="YesButton">
                                                 <rect key="frame" x="197" y="0.0" width="177" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="Yes"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -124,7 +128,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="yesButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4mG-F0-8cR"/>
+                                                    <action selector="yesButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X8Q-92-OXY"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -148,10 +152,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="contentStack" destination="xY2-yJ-Isx" id="WIF-va-yHc"/>
                         <outlet property="counterLabel" destination="Y5N-2U-1X4" id="9fa-Xg-KlY"/>
                         <outlet property="imageView" destination="Ud3-ZD-aHB" id="u3t-g9-BT0"/>
-                        <outlet property="loaderView" destination="jC1-M1-Mw4" id="MV2-ha-WYc"/>
+                        <outlet property="loader" destination="jC1-M1-Mw4" id="18S-R2-uQO"/>
                         <outlet property="noButton" destination="wiH-1o-8oY" id="o6q-FS-JUs"/>
                         <outlet property="textLabel" destination="UaG-Nf-T9D" id="PAv-lm-MI8"/>
                         <outlet property="yesButton" destination="Ebg-wY-8Ab" id="g3I-MG-oQa"/>

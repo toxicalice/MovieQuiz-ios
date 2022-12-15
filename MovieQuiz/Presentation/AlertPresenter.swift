@@ -26,6 +26,7 @@ struct AlertPresenter {
             handler: alertModel.completion)
 
         alert.addAction(action)
+        alert.view.accessibilityIdentifier = alertModel.id
 
         viewController.present(alert, animated: true)
     }
